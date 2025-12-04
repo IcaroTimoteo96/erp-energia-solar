@@ -1,0 +1,11 @@
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Domain\bin\Debug\net10.0\SolarCRM.Domain.deps.json
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Domain\bin\Debug\net10.0\SolarCRM.Domain.dll
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Domain\bin\Debug\net10.0\SolarCRM.Domain.pdb
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Domain\obj\Debug\net10.0\SolarCRM.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Domain\obj\Debug\net10.0\SolarCRM.Domain.AssemblyInfoInputs.cache
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Domain\obj\Debug\net10.0\SolarCRM.Domain.AssemblyInfo.cs
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Domain\obj\Debug\net10.0\SolarCRM.Domain.csproj.CoreCompileInputs.cache
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Domain\obj\Debug\net10.0\SolarCRM.Domain.dll
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Domain\obj\Debug\net10.0\refint\SolarCRM.Domain.dll
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Domain\obj\Debug\net10.0\SolarCRM.Domain.pdb
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Domain\obj\Debug\net10.0\ref\SolarCRM.Domain.dll

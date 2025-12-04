@@ -1,0 +1,57 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: solarcrm-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: SolarCRM
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - solarcrm-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: solarcrm-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=SolarCRM;Username=admin;Password=password
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - solarcrm-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: solarcrm-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - solarcrm-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+
+networks:
+  solarcrm-network:
+    driver: bridge

@@ -1,0 +1,17 @@
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\bin\Debug\net10.0\SolarCRM.Infrastructure.deps.json
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\bin\Debug\net10.0\SolarCRM.Infrastructure.dll
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\bin\Debug\net10.0\SolarCRM.Infrastructure.pdb
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\bin\Debug\net10.0\SolarCRM.Application.dll
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\bin\Debug\net10.0\SolarCRM.Domain.dll
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\bin\Debug\net10.0\SolarCRM.Application.pdb
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\bin\Debug\net10.0\SolarCRM.Domain.pdb
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\obj\Debug\net10.0\SolarCRM.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\obj\Debug\net10.0\SolarCRM.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\obj\Debug\net10.0\SolarCRM.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\obj\Debug\net10.0\SolarCRM.Infrastructure.AssemblyInfo.cs
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\obj\Debug\net10.0\SolarCRM.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\obj\Debug\net10.0\SolarCRM.946BFCF5.Up2Date
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\obj\Debug\net10.0\SolarCRM.Infrastructure.dll
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\obj\Debug\net10.0\refint\SolarCRM.Infrastructure.dll
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\obj\Debug\net10.0\SolarCRM.Infrastructure.pdb
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Infrastructure\obj\Debug\net10.0\ref\SolarCRM.Infrastructure.dll

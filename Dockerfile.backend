@@ -1,0 +1,42 @@
+# Build stage
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+# Copy solution and project files
+COPY ["src/SolarCRM.Api/SolarCRM.Api.csproj", "src/SolarCRM.Api/"]
+COPY ["src/SolarCRM.Application/SolarCRM.Application.csproj", "src/SolarCRM.Application/"]
+COPY ["src/SolarCRM.Infrastructure/SolarCRM.Infrastructure.csproj", "src/SolarCRM.Infrastructure/"]
+COPY ["src/SolarCRM.Domain/SolarCRM.Domain.csproj", "src/SolarCRM.Domain/"]
+
+# Restore dependencies
+RUN dotnet restore "src/SolarCRM.Api/SolarCRM.Api.csproj"
+
+# Copy all source files
+COPY . .
+
+# Build the application
+WORKDIR "/src/src/SolarCRM.Api"
+RUN dotnet build "SolarCRM.Api.csproj" -c Release -o /app/build
+
+# Publish stage
+FROM build AS publish
+RUN dotnet publish "SolarCRM.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+# Runtime stage - Using SDK for EF migrations
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS final
+WORKDIR /app
+EXPOSE 5000
+EXPOSE 5001
+
+# Copy published files
+COPY --from=publish /app/publish .
+
+# Install EF Core tools globally
+RUN dotnet tool install --global dotnet-ef --version 8.0.11
+ENV PATH="${PATH}:/root/.dotnet/tools"
+
+# Set environment variables
+ENV ASPNETCORE_URLS=http://+:5000
+ENV ASPNETCORE_ENVIRONMENT=Production
+
+ENTRYPOINT ["dotnet", "SolarCRM.Api.dll"]

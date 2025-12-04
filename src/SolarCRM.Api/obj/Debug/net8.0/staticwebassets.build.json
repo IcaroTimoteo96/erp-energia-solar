@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "LeWDoRXNRrsajbkAxBjMz7nz40hm2Ou8R7FVTPLu+gI=",
+  "Source": "SolarCRM.Api",
+  "BasePath": "_content/SolarCRM.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

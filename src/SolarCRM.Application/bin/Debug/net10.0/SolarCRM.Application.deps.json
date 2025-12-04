@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "SolarCRM.Application/1.0.0": {
+        "dependencies": {
+          "SolarCRM.Domain": "1.0.0"
+        },
+        "runtime": {
+          "SolarCRM.Application.dll": {}
+        }
+      },
+      "SolarCRM.Domain/1.0.0": {
+        "runtime": {
+          "SolarCRM.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SolarCRM.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SolarCRM.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
