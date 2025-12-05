@@ -4,7 +4,7 @@ A comprehensive CRM system for solar energy companies built with .NET 8 and Reac
 
 ## Features
 
-✅ **CRM & Lead Management** - Monitorar leads, gerenciar atividades, e personalizar do servico - Track leads, manage interactions, and personalize customer service
+✅ **CRM & Lead Management** - Monitorar leads, gerenciar atividades, e serviço personalizado - Track leads, manage interactions, and personalize customer service
 
 ✅ **Solar Calculator** - Gerar orçamentos integrado a uma calculadora - Generate accurate quotes with integrated solar calculator
 
