@@ -4,12 +4,17 @@ A comprehensive CRM system for solar energy companies built with .NET 8 and Reac
 
 ## Features
 
-✅ **CRM & Lead Management** - Track leads, manage interactions, and personalize customer service
-✅ **Solar Calculator** - Generate accurate quotes with integrated solar calculator
-✅ **Project Management** - Complete project tracking from sizing to installation validation
-✅ **Service Orders** - Manage installations and maintenance with digital checklists
-✅ **Inventory Management** - Track solar components and maintain stock levels
-✅ **Support System** - Handle customer tickets and technical support requests
+✅ **CRM & Lead Management** - Monitorar leads, gerenciar atividades, e personalizar do servico - Track leads, manage interactions, and personalize customer service
+
+✅ **Solar Calculator** - Gerar orçamentos integrado a uma calculadora - Generate accurate quotes with integrated solar calculator
+
+✅ **Project Management** - Monitorar do projeto desde o orçamento até a instalação - Complete project tracking from sizing to installation validation
+
+✅ **Service Orders** - Gerenciar instalações e manutenções com listas de verificação - Manage installations and maintenance with digital checklists
+
+✅ **Inventory Management** - Monitoramento de componentes e manutenção de estoques - Track solar components and maintain stock levels
+
+✅ **Support System** - Gerenciar tickets e suporte técnico - Handle customer tickets and technical support requests
 
 ## Tech Stack
 
@@ -124,52 +129,52 @@ erp-energia-solar/
 ## API Endpoints
 
 ### Leads
-- `GET /api/leads` - Get all leads
-- `POST /api/leads` - Create a new lead
-- `GET /api/leads/{id}` - Get lead by ID
-- `PUT /api/leads/{id}` - Update lead
-- `DELETE /api/leads/{id}` - Delete lead
+- `GET /api/leads` - Buscar todos os leads - Get all leads
+- `POST /api/leads` - Criar um novo lead - Create a new lead
+- `GET /api/leads/{id}` - Buscar lead por ID - Get lead by ID
+- `PUT /api/leads/{id}` - Atualizar lead - Update lead
+- `DELETE /api/leads/{id}` - Remover lead - Delete lead
 
 ### Quotes
-- `GET /api/quotes` - Get all quotes
-- `POST /api/quotes` - Create a new quote
-- `POST /api/quotes/calculate` - Calculate solar system size
+- `GET /api/quotes` - Buscar todos os orçamentos - Get all quotes
+- `POST /api/quotes` - Criar um novo orçamento - Create a new quote
+- `POST /api/quotes/calculate` - Calcular o tamanho da placa solar - Calculate solar system size
 
 ### Projects
-- `GET /api/projects` - Get all projects
-- `POST /api/projects` - Create a new project
-- `POST /api/projects/{id}/documents` - Upload project document
+- `GET /api/projects` - Buscar todos os projetos - Get all projects
+- `POST /api/projects` - Criar um novo projeto - Create a new project
+- `POST /api/projects/{id}/documents` - Enviar um documento do projeto - Upload project document
 
 ### Service Orders
-- `GET /api/serviceorders` - Get all service orders
-- `POST /api/serviceorders` - Create a new service order
-- `POST /api/serviceorders/{id}/checklist` - Add checklist item
+- `GET /api/serviceorders` - Buscar todas as ordens de serviços - Get all service orders
+- `POST /api/serviceorders` - Criar uma nova ordem de serviço - Create a new service order
+- `POST /api/serviceorders/{id}/checklist` - Adicionar uma lista de verificação - Add checklist item
 
 ### Products (Inventory)
-- `GET /api/products` - Get all products
-- `POST /api/products` - Create a new product
-- `PUT /api/products/{id}` - Update product
-- `DELETE /api/products/{id}` - Delete product
+- `GET /api/products` - Buscar todos os produtos - Get all products
+- `POST /api/products` - Criar um novo produto - Create a new product
+- `PUT /api/products/{id}` - Atualizar um produto - Update product
+- `DELETE /api/products/{id}` - Remover um produto - Delete product
 
 ### Tickets (Support)
-- `GET /api/tickets` - Get all tickets
-- `POST /api/tickets` - Create a new ticket
-- `PUT /api/tickets/{id}` - Update ticket
+- `GET /api/tickets` - Buscar todos o tickets - Get all tickets
+- `POST /api/tickets` - Criar um novo ticket - Create a new ticket
+- `PUT /api/tickets/{id}` - Atualizar um ticket - Update ticket
 
 ### Interactions
-- `GET /api/interactions/lead/{leadId}` - Get interactions by lead
-- `POST /api/interactions` - Create a new interaction
+- `GET /api/interactions/lead/{leadId}` - Buscar atividades por lead - Get interactions by lead
+- `POST /api/interactions` - Criar uma nova atividade - Create a new interaction
 
 ## Database Schema
 
 Main entities:
-- **Lead** - Potential customers
-- **Interaction** - Customer interaction history
-- **Quote** - Solar system quotes with items
-- **Product** - Solar components inventory
-- **Project** - Installation projects with documents
-- **ServiceOrder** - Service orders with checklists
-- **Ticket** - Support tickets
+- **Lead** - Potenciais Clientes - Potential customers
+- **Interaction** - Histórico de atividade do cliente - Customer interaction history
+- **Quote** - Orçamento com os itens - Solar system quotes with items
+- **Product** - Catálogo de componentes - Solar components inventory
+- **Project** - Instalação de projetos com documentos - Installation projects with documents
+- **ServiceOrder** - Ordem de serviço com lista de verificação - Service orders with checklists
+- **Ticket** - Suporte para os tickets - Support tickets
 
 ## Development
 
