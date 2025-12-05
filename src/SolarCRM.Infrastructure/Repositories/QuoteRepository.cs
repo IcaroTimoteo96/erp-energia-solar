@@ -17,7 +17,16 @@ namespace SolarCRM.Infrastructure.Repositories
                 .Include(q => q.Items)
                 .ThenInclude(qi => qi.Product)
                 .Include(q => q.Lead)
+                .Include(q => q.Lead)
                 .FirstOrDefaultAsync(q => q.Id == id);
+        }
+
+        public async Task<IEnumerable<Quote>> GetQuotesWithDetailsAsync()
+        {
+            return await _context.Quotes
+                .Include(q => q.Lead)
+                .OrderByDescending(q => q.CreatedAt)
+                .ToListAsync();
         }
     }
 }

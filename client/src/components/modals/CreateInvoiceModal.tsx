@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from '../Modal';
 import axios from 'axios';
 
@@ -10,6 +10,7 @@ interface CreateInvoiceModalProps {
 
 const CreateInvoiceModal = ({ isOpen, onClose, onSuccess }: CreateInvoiceModalProps) => {
   const [formData, setFormData] = useState({
+    projectId: '',
     invoiceNumber: '',
     issueDate: new Date().toISOString().split('T')[0],
     dueDate: '',
@@ -17,7 +18,23 @@ const CreateInvoiceModal = ({ isOpen, onClose, onSuccess }: CreateInvoiceModalPr
     status: 'Pending',
     notes: ''
   });
+  const [projects, setProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      loadProjects();
+    }
+  }, [isOpen]);
+
+  const loadProjects = async () => {
+    try {
+      const response = await axios.get('/api/projects');
+      setProjects(response.data);
+    } catch (error) {
+      console.error('Error loading projects:', error);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,6 +49,7 @@ const CreateInvoiceModal = ({ isOpen, onClose, onSuccess }: CreateInvoiceModalPr
       onSuccess();
       onClose();
       setFormData({
+        projectId: '',
         invoiceNumber: '',
         issueDate: new Date().toISOString().split('T')[0],
         dueDate: '',
@@ -50,6 +68,23 @@ const CreateInvoiceModal = ({ isOpen, onClose, onSuccess }: CreateInvoiceModalPr
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Nova Fatura">
       <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Projeto Associado</label>
+          <select
+            required
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none"
+            value={formData.projectId}
+            onChange={(e) => setFormData({ ...formData, projectId: e.target.value })}
+          >
+            <option value="">Selecione um projeto...</option>
+            {projects.map((project) => (
+              <option key={project.id} value={project.id}>
+                {project.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Número da Fatura</label>
           <input

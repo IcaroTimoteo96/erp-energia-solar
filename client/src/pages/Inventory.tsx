@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { Plus, Package, AlertTriangle, Search, MoreVertical } from 'lucide-react';
 import { productService } from '../services/api';
 import CreateProductModal from '../components/modals/CreateProductModal';
+import { useLanguage } from '../context/LanguageContext';
 
 const Inventory = () => {
   const [products, setProducts] = useState<any[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     loadProducts();
@@ -24,15 +26,15 @@ const Inventory = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Inventory</h2>
-          <p className="text-gray-500">Manage solar components and stock</p>
+          <h2 className="text-2xl font-bold text-gray-900">{t.inventory.title}</h2>
+          <p className="text-gray-500">{t.inventory.subtitle}</p>
         </div>
         <button
           onClick={() => setIsModalOpen(true)}
           className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors shadow-sm"
         >
           <Plus size={20} />
-          Add Product
+          {t.inventory.addProduct}
         </button>
       </div>
 
@@ -47,7 +49,7 @@ const Inventory = () => {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
           <input
             type="text"
-            placeholder="Search components..."
+            placeholder={t.common.search}
             className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500"
           />
         </div>
@@ -64,11 +66,11 @@ const Inventory = () => {
         <table className="w-full text-left">
           <thead className="bg-gray-50 border-b border-gray-100">
             <tr>
-              <th className="px-6 py-4 font-semibold text-gray-600">Product Name</th>
-              <th className="px-6 py-4 font-semibold text-gray-600">Type</th>
-              <th className="px-6 py-4 font-semibold text-gray-600">Manufacturer</th>
-              <th className="px-6 py-4 font-semibold text-gray-600">Stock</th>
-              <th className="px-6 py-4 font-semibold text-gray-600">Price</th>
+              <th className="px-6 py-4 font-semibold text-gray-600">{t.inventory.productName}</th>
+              <th className="px-6 py-4 font-semibold text-gray-600">{t.inventory.type}</th>
+              <th className="px-6 py-4 font-semibold text-gray-600">{t.inventory.manufacturer}</th>
+              <th className="px-6 py-4 font-semibold text-gray-600">{t.inventory.stock}</th>
+              <th className="px-6 py-4 font-semibold text-gray-600">{t.inventory.price}</th>
               <th className="px-6 py-4 font-semibold text-gray-600"></th>
             </tr>
           </thead>
@@ -109,7 +111,7 @@ const Inventory = () => {
             {products.length === 0 && (
               <tr>
                 <td colSpan={6} className="px-6 py-12 text-center text-gray-500">
-                  No products in inventory.
+                  {t.common.noData}
                 </td>
               </tr>
             )}

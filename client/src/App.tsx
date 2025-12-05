@@ -16,11 +16,14 @@ import Financial from './pages/Financial';
 import Performance from './pages/Performance';
 import Analytics from './pages/Analytics';
 
+import { LanguageProvider } from './context/LanguageContext';
+
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Routes>
+    <LanguageProvider>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
@@ -41,6 +44,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </AuthProvider>
+    </LanguageProvider>
   );
 }
 

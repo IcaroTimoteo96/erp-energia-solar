@@ -3,10 +3,12 @@ import { Plus } from 'lucide-react';
 import { quoteService } from '../services/api';
 import SolarCalculator from '../components/SolarCalculator';
 import CreateQuoteModal from '../components/modals/CreateQuoteModal';
+import { useLanguage } from '../context/LanguageContext';
 
 const Quotes = () => {
   const [quotes, setQuotes] = useState<any[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     loadQuotes();
@@ -25,15 +27,15 @@ const Quotes = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Quotes & Proposals</h2>
-          <p className="text-gray-500">Generate and manage solar proposals</p>
+          <h2 className="text-2xl font-bold text-gray-900">{t.quotes.title}</h2>
+          <p className="text-gray-500">{t.quotes.subtitle}</p>
         </div>
         <button
           onClick={() => setIsModalOpen(true)}
           className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors shadow-sm"
         >
           <Plus size={20} />
-          New Quote
+          {t.quotes.newQuote}
         </button>
       </div>
 
@@ -46,14 +48,14 @@ const Quotes = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-            <div className="p-4 border-b border-gray-100 font-semibold text-gray-700">Recent Quotes</div>
+            <div className="p-4 border-b border-gray-100 font-semibold text-gray-700">{t.quotes.recentQuotes}</div>
             <table className="w-full text-left">
               <thead className="bg-gray-50 border-b border-gray-100">
                 <tr>
-                  <th className="px-6 py-4 font-semibold text-gray-600">Client</th>
-                  <th className="px-6 py-4 font-semibold text-gray-600">System Size</th>
-                  <th className="px-6 py-4 font-semibold text-gray-600">Total Price</th>
-                  <th className="px-6 py-4 font-semibold text-gray-600">Status</th>
+                  <th className="px-6 py-4 font-semibold text-gray-600">{t.quotes.client}</th>
+                  <th className="px-6 py-4 font-semibold text-gray-600">{t.quotes.systemSize}</th>
+                  <th className="px-6 py-4 font-semibold text-gray-600">{t.quotes.totalPrice}</th>
+                  <th className="px-6 py-4 font-semibold text-gray-600">{t.quotes.status}</th>
                   <th className="px-6 py-4 font-semibold text-gray-600"></th>
                 </tr>
               </thead>

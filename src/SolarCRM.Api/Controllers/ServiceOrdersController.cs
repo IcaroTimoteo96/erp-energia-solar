@@ -5,7 +5,7 @@ using SolarCRM.Domain.Interfaces;
 namespace SolarCRM.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/service-orders")]
     public class ServiceOrdersController : ControllerBase
     {
         private readonly IServiceOrderRepository _serviceOrderRepository;
@@ -36,8 +36,20 @@ namespace SolarCRM.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<ServiceOrder>> CreateServiceOrder(ServiceOrder serviceOrder)
         {
-            var createdServiceOrder = await _serviceOrderRepository.AddAsync(serviceOrder);
-            return CreatedAtAction(nameof(GetServiceOrder), new { id = createdServiceOrder.Id }, createdServiceOrder);
+            try
+            {
+                var createdServiceOrder = await _serviceOrderRepository.AddAsync(serviceOrder);
+                return CreatedAtAction(nameof(GetServiceOrder), new { id = createdServiceOrder.Id }, createdServiceOrder);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating service order: {ex.Message}");
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
+                }
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         [HttpPut("{id}")]

@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { Plus, Wrench, CheckSquare, User, Calendar } from 'lucide-react';
 import { serviceOrderService } from '../services/api';
 import CreateServiceOrderModal from '../components/modals/CreateServiceOrderModal';
+import { useLanguage } from '../context/LanguageContext';
 
 const ServiceOrders = () => {
   const [orders, setOrders] = useState<any[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     loadOrders();
@@ -24,15 +26,15 @@ const ServiceOrders = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Service Orders</h2>
-          <p className="text-gray-500">Schedule installations and maintenance</p>
+          <h2 className="text-2xl font-bold text-gray-900">{t.serviceOrders.title}</h2>
+          <p className="text-gray-500">{t.serviceOrders.subtitle}</p>
         </div>
         <button
           onClick={() => setIsModalOpen(true)}
           className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors shadow-sm"
         >
           <Plus size={20} />
-          New Order
+          {t.serviceOrders.newOrder}
         </button>
       </div>
 
@@ -55,7 +57,7 @@ const ServiceOrders = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-900">{order.description}</h3>
-                    <p className="text-sm text-gray-500">Project: {order.project?.name || 'General Maintenance'}</p>
+                    <p className="text-sm text-gray-500">{t.financial.project}: {order.project?.name || 'General Maintenance'}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -67,7 +69,7 @@ const ServiceOrders = () => {
                     {order.status}
                   </span>
                   <button className="text-gray-400 hover:text-gray-600">
-                    Details
+                    {t.projects.viewDetails}
                   </button>
                 </div>
               </div>
@@ -79,11 +81,11 @@ const ServiceOrders = () => {
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <User size={16} className="text-gray-400" />
-                  <span>Tech: Assigned Technician</span>
+                  <span>{t.serviceOrders.technician}: Assigned Technician</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <CheckSquare size={16} className="text-gray-400" />
-                  <span>{order.checklist?.filter((i: any) => i.isCompleted).length || 0} / {order.checklist?.length || 0} Tasks</span>
+                  <span>{order.checklist?.filter((i: any) => i.isCompleted).length || 0} / {order.checklist?.length || 0} {t.serviceOrders.tasks}</span>
                 </div>
               </div>
             </div>
@@ -92,8 +94,8 @@ const ServiceOrders = () => {
           {orders.length === 0 && (
             <div className="p-12 text-center text-gray-500">
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">🛠️</div>
-              <h3 className="text-lg font-medium text-gray-900">No service orders</h3>
-              <p>Create a service order to dispatch technicians.</p>
+              <h3 className="text-lg font-medium text-gray-900">{t.serviceOrders.title}</h3>
+              <p>{t.serviceOrders.subtitle}</p>
             </div>
           )}
         </div>

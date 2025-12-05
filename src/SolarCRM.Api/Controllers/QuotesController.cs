@@ -21,7 +21,15 @@ namespace SolarCRM.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Quote>>> GetQuotes()
         {
-            var quotes = await _quoteRepository.GetAllAsync();
+            var quotes = await _quoteRepository.GetQuotesWithDetailsAsync();
+
+            // Debug logging
+            Console.WriteLine($"[DEBUG] Fetched {quotes.Count()} quotes.");
+            foreach(var q in quotes)
+            {
+                Console.WriteLine($"[DEBUG] Quote {q.Id}: LeadId={q.LeadId}, LeadObject={(q.Lead == null ? "NULL" : q.Lead.Name)}");
+            }
+
             return Ok(quotes);
         }
 

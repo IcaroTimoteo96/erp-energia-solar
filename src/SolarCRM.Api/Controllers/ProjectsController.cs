@@ -6,7 +6,6 @@ namespace SolarCRM.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Microsoft.AspNetCore.Authorization.Authorize]
     public class ProjectsController : ControllerBase
     {
         private readonly IProjectRepository _projectRepository;
@@ -19,7 +18,15 @@ namespace SolarCRM.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
         {
-            var projects = await _projectRepository.GetAllAsync();
+            var projects = await _projectRepository.GetProjectsWithDetailsAsync();
+
+            // Debug logging
+            Console.WriteLine($"[DEBUG] Fetched {projects.Count()} projects.");
+            foreach(var p in projects)
+            {
+                Console.WriteLine($"[DEBUG] Project {p.Id}: Name={p.Name}, Lead={(p.Quote?.Lead?.Name ?? "NULL")}");
+            }
+
             return Ok(projects);
         }
 

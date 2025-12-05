@@ -27,10 +27,10 @@ export const projectService = {
 };
 
 export const serviceOrderService = {
-  getAll: () => api.get('/serviceorders'),
-  getById: (id: string) => api.get(`/serviceorders/${id}`),
-  create: (data: any) => api.post('/serviceorders', data),
-  addChecklistItem: (id: string, data: any) => api.post(`/serviceorders/${id}/checklist`, data),
+  getAll: () => api.get('/service-orders'),
+  getById: (id: string) => api.get(`/service-orders/${id}`),
+  create: (data: any) => api.post('/service-orders', data),
+  addChecklistItem: (id: string, data: any) => api.post(`/service-orders/${id}/checklist`, data),
 };
 
 export const productService = {
@@ -52,6 +52,10 @@ export const ticketService = {
 export const interactionService = {
   getByLeadId: (leadId: string) => api.get(`/interactions/lead/${leadId}`),
   create: (data: any) => api.post('/interactions', data),
+};
+
+export const dashboardService = {
+  getSummary: () => api.get('/dashboard/summary'),
 };
 
 export default api;

@@ -1,22 +1,26 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Users, FileText, Briefcase, Wrench, Package, LifeBuoy, DollarSign, Activity, BarChart3, LogOut } from 'lucide-react';
+import { LayoutDashboard, Users, FileText, Briefcase, Wrench, Package, LifeBuoy, DollarSign, LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 
 const Layout = () => {
   const location = useLocation();
   const { user, logout } = useAuth();
+  const { language, setLanguage, t } = useLanguage();
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'pt' ? 'en' : 'pt');
+  };
 
   const navItems = [
-    { path: '/', label: 'Dashboard', icon: <LayoutDashboard size={20} /> },
-    { path: '/leads', label: 'Leads', icon: <Users size={20} /> },
-    { path: '/quotes', label: 'Quotes', icon: <FileText size={20} /> },
-    { path: '/projects', label: 'Projects', icon: <Briefcase size={20} /> },
-    { path: '/service-orders', label: 'Service Orders', icon: <Wrench size={20} /> },
-    { path: '/inventory', label: 'Inventory', icon: <Package size={20} /> },
-    { path: '/support', label: 'Support', icon: <LifeBuoy size={20} /> },
-    { path: '/financial', label: 'Financeiro', icon: <DollarSign size={20} /> },
-    { path: '/performance', label: 'Performance', icon: <Activity size={20} /> },
-    { path: '/analytics', label: 'Análises', icon: <BarChart3 size={20} /> },
+    { path: '/', label: t.sidebar.dashboard, icon: <LayoutDashboard size={20} /> },
+    { path: '/leads', label: t.sidebar.leads, icon: <Users size={20} /> },
+    { path: '/quotes', label: t.sidebar.quotes, icon: <FileText size={20} /> },
+    { path: '/projects', label: t.sidebar.projects, icon: <Briefcase size={20} /> },
+    { path: '/service-orders', label: t.sidebar.serviceOrders, icon: <Wrench size={20} /> },
+    { path: '/inventory', label: t.sidebar.inventory, icon: <Package size={20} /> },
+    { path: '/support', label: t.sidebar.support, icon: <LifeBuoy size={20} /> },
+    { path: '/financial', label: t.sidebar.financial, icon: <DollarSign size={20} /> },
   ];
 
   return (
@@ -53,9 +57,15 @@ const Layout = () => {
       <main className="flex-1 overflow-auto">
         <header className="bg-white shadow-sm px-8 py-4 flex justify-between items-center sticky top-0 z-10">
           <h2 className="text-xl font-semibold text-gray-800">
-            {navItems.find((i) => i.path === location.pathname)?.label || 'Dashboard'}
+            {navItems.find((i) => i.path === location.pathname)?.label || t.sidebar.dashboard}
           </h2>
           <div className="flex items-center gap-4">
+            <button
+              onClick={toggleLanguage}
+              className="px-3 py-1 rounded-full border border-gray-300 text-sm font-medium hover:bg-gray-50 flex items-center gap-2"
+            >
+              <span>{language === 'pt' ? '🇧🇷 PT' : '🇺🇸 EN'}</span>
+            </button>
             <div className="text-right mr-2 hidden md:block">
               <p className="text-sm font-medium text-gray-900">{user?.fullName}</p>
               <p className="text-xs text-gray-500">{user?.email}</p>
@@ -66,7 +76,7 @@ const Layout = () => {
             <button
               onClick={logout}
               className="p-2 rounded-full hover:bg-gray-100 text-gray-600"
-              title="Sair"
+              title={t.auth.logout}
             >
               <LogOut size={20} />
             </button>

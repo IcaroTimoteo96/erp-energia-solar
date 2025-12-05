@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { Plus, Calendar, Clock, FileText, Upload } from 'lucide-react';
 import { projectService } from '../services/api';
 import CreateProjectModal from '../components/modals/CreateProjectModal';
+import { useLanguage } from '../context/LanguageContext';
 
 const Projects = () => {
   const [projects, setProjects] = useState<any[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     loadProjects();
@@ -24,15 +26,15 @@ const Projects = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Projects</h2>
-          <p className="text-gray-500">Manage installations and workflows</p>
+          <h2 className="text-2xl font-bold text-gray-900">{t.projects.title}</h2>
+          <p className="text-gray-500">{t.projects.subtitle}</p>
         </div>
         <button
           onClick={() => setIsModalOpen(true)}
           className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors shadow-sm"
         >
           <Plus size={20} />
-          New Project
+          {t.projects.newProject}
         </button>
       </div>
 
@@ -49,7 +51,7 @@ const Projects = () => {
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <h3 className="font-bold text-lg text-gray-900">{project.name}</h3>
-                  <p className="text-sm text-gray-500">Client: {project.quote?.lead?.name || 'Unknown'}</p>
+                  <p className="text-sm text-gray-500">{t.projects.client}: {project.quote?.lead?.name || 'Unknown'}</p>
                 </div>
                 <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                   project.status === 'Completed' ? 'bg-green-100 text-green-700' :
@@ -63,16 +65,16 @@ const Projects = () => {
               <div className="space-y-3">
                 <div className="flex items-center gap-3 text-sm text-gray-600">
                   <Calendar size={18} className="text-gray-400" />
-                  <span>Start: {new Date(project.startDate).toLocaleDateString()}</span>
+                  <span>{t.projects.start}: {new Date(project.startDate).toLocaleDateString()}</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-gray-600">
                   <Clock size={18} className="text-gray-400" />
-                  <span>Est. End: {project.endDate ? new Date(project.endDate).toLocaleDateString() : 'TBD'}</span>
+                  <span>{t.projects.end}: {project.endDate ? new Date(project.endDate).toLocaleDateString() : 'TBD'}</span>
                 </div>
               </div>
 
               <div className="mt-6">
-                <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Documents</h4>
+                <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">{t.projects.documents}</h4>
                 <div className="space-y-2">
                   {project.documents?.map((doc: any, idx: number) => (
                     <div key={idx} className="flex items-center justify-between text-sm bg-gray-50 p-2 rounded-lg">
@@ -80,11 +82,11 @@ const Projects = () => {
                         <FileText size={16} className="text-gray-400" />
                         <span className="truncate max-w-[150px]">{doc.fileName}</span>
                       </div>
-                      <button className="text-blue-600 hover:text-blue-800 text-xs font-medium">View</button>
+                      <button className="text-blue-600 hover:text-blue-800 text-xs font-medium">{t.common.view}</button>
                     </div>
                   ))}
                   {(!project.documents || project.documents.length === 0) && (
-                    <p className="text-xs text-gray-400 italic">No documents attached</p>
+                    <p className="text-xs text-gray-400 italic">{t.projects.noDocuments}</p>
                   )}
                 </div>
               </div>
@@ -92,10 +94,10 @@ const Projects = () => {
 
             <div className="bg-gray-50 px-6 py-4 border-t border-gray-100 flex justify-between items-center">
               <button className="text-sm text-gray-600 hover:text-gray-900 font-medium flex items-center gap-1">
-                <Upload size={16} /> Upload Doc
+                <Upload size={16} /> {t.projects.uploadDoc}
               </button>
               <button className="text-sm text-orange-600 hover:text-orange-700 font-medium flex items-center gap-1">
-                View Details →
+                {t.projects.viewDetails} →
               </button>
             </div>
           </div>
@@ -104,8 +106,8 @@ const Projects = () => {
         {projects.length === 0 && (
            <div className="col-span-full text-center py-12 bg-white rounded-xl border border-dashed border-gray-300">
              <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">🏗️</div>
-             <h3 className="text-lg font-medium text-gray-900">No active projects</h3>
-             <p className="text-gray-500">Projects will appear here once quotes are accepted.</p>
+             <h3 className="text-lg font-medium text-gray-900">{t.projects.noProjects}</h3>
+             <p className="text-gray-500">{t.projects.noProjectsSubtitle}</p>
            </div>
         )}
       </div>

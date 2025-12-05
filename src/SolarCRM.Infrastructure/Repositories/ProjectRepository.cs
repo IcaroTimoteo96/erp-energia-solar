@@ -19,5 +19,15 @@ namespace SolarCRM.Infrastructure.Repositories
                 .Include(p => p.Documents)
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
+
+        public async Task<IEnumerable<Project>> GetProjectsWithDetailsAsync()
+        {
+            return await _context.Projects
+                .Include(p => p.Quote)
+                .ThenInclude(q => q.Lead)
+                .Include(p => p.Documents)
+                .OrderByDescending(p => p.CreatedAt)
+                .ToListAsync();
+        }
     }
 }

@@ -5,7 +5,11 @@ using SolarCRM.Infrastructure.Persistence;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+    });
 
 builder.Services.AddDbContext<SolarCRM.Infrastructure.Persistence.SolarDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -34,13 +38,6 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod();
     });
 });
-
-
-
-
-
-
-
 
 
 builder.Services.AddIdentity<SolarCRM.Domain.Entities.User, Microsoft.AspNetCore.Identity.IdentityRole>()
