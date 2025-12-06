@@ -1,6 +1,7 @@
 # Solar CRM
 
 Um sistema CRM completo feito com .NET 8 e React para empresas de energia solar.
+
 A comprehensive CRM system for solar energy companies built with .NET 8 and React.
 
 ## Features
