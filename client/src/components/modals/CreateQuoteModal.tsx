@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Modal from '../Modal';
-import axios from 'axios';
+import { leadService, quoteService } from '../../services/api';
 
 interface CreateQuoteModalProps {
   isOpen: boolean;
@@ -27,10 +27,11 @@ const CreateQuoteModal = ({ isOpen, onClose, onSuccess }: CreateQuoteModalProps)
 
   const loadLeads = async () => {
     try {
-      const response = await axios.get('/api/leads');
-      setLeads(response.data);
+      const response = await leadService.getAll();
+      setLeads(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error('Error loading leads:', error);
+      setLeads([]);
     }
   };
 
@@ -38,7 +39,7 @@ const CreateQuoteModal = ({ isOpen, onClose, onSuccess }: CreateQuoteModalProps)
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('/api/quotes', {
+      await quoteService.create({
         ...formData,
         systemSizeKw: parseFloat(formData.systemSizeKw),
         totalPrice: parseFloat(formData.totalPrice),

@@ -58,7 +58,7 @@ const Financial = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-500 text-sm">{t.financial.totalBalance}</p>
-              <p className="text-2xl font-bold text-gray-900">R$ {balance.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-gray-900">R$ {(balance || 0).toLocaleString()}</p>
             </div>
             <DollarSign className="text-green-500" size={40} />
           </div>
@@ -112,7 +112,7 @@ const Financial = () => {
                     {new Date(invoice.issueDate).toLocaleDateString('pt-BR')}
                   </td>
                   <td className="px-6 py-4 font-medium text-gray-900">
-                    R$ {invoice.totalAmount.toLocaleString()}
+                    R$ {(invoice.totalAmount || 0).toLocaleString()}
                   </td>
                   <td className="px-6 py-4">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${

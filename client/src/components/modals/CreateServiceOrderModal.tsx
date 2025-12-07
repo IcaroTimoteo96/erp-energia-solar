@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Modal from '../Modal';
-import axios from 'axios';
+import { projectService, serviceOrderService } from '../../services/api';
 
 interface CreateServiceOrderModalProps {
   isOpen: boolean;
@@ -27,10 +27,11 @@ const CreateServiceOrderModal = ({ isOpen, onClose, onSuccess }: CreateServiceOr
 
   const loadProjects = async () => {
     try {
-      const response = await axios.get('/api/projects');
-      setProjects(response.data);
+      const response = await projectService.getAll();
+      setProjects(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error('Error loading projects:', error);
+      setProjects([]);
     }
   };
 
@@ -38,7 +39,7 @@ const CreateServiceOrderModal = ({ isOpen, onClose, onSuccess }: CreateServiceOr
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('/api/service-orders', {
+      await serviceOrderService.create({
         ...formData,
         scheduledDate: new Date(formData.scheduledDate).toISOString()
       });
