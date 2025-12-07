@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import axios from 'axios';
+import api from '../services/api';
 
 interface User {
   email: string;
@@ -30,7 +30,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
 
     // Configurar interceptor para adicionar token em todas as requisições
-    const interceptorId = axios.interceptors.request.use(
+    const interceptorId = api.interceptors.request.use(
       (config) => {
         const tokenToUse = localStorage.getItem('token'); // Pegar sempre do localStorage para garantir
         if (tokenToUse) {
@@ -42,7 +42,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     );
 
     // Interceptor para tratar erros 401 (Token expirado/inválido)
-    const responseInterceptorId = axios.interceptors.response.use(
+    const responseInterceptorId = api.interceptors.response.use(
       (response) => response,
       (error) => {
         if (error.response && error.response.status === 401) {
@@ -53,8 +53,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     );
 
     return () => {
-      axios.interceptors.request.eject(interceptorId);
-      axios.interceptors.response.eject(responseInterceptorId);
+
+      api.interceptors.request.eject(interceptorId);
+      api.interceptors.response.eject(responseInterceptorId);
     };
   }, []);
 
