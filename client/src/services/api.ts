@@ -66,4 +66,12 @@ export const dashboardService = {
   getSummary: () => api.get('/dashboard/summary'),
 };
 
+export const invoiceService = {
+  getAll: () => api.get('/invoices'),
+};
+
+export const transactionService = {
+  getBalance: () => api.get('/transactions/balance'),
+};
+
 export default api;

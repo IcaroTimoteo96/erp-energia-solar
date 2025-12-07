@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { DollarSign, FileText, Plus } from 'lucide-react';
-import axios from 'axios';
+import { invoiceService, transactionService } from '../services/api';
 import CreateInvoiceModal from '../components/modals/CreateInvoiceModal';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -17,14 +17,17 @@ const Financial = () => {
   const loadData = async () => {
     try {
       const [invoicesRes, balanceRes] = await Promise.all([
-        axios.get('/api/invoices'),
-        axios.get('/api/transactions/balance')
+        invoiceService.getAll(),
+        transactionService.getBalance()
       ]);
-      setInvoices(invoicesRes.data);
-      setBalance(balanceRes.data.balance);
+      setInvoices(invoicesRes.data || []);
+      setBalance(balanceRes.data?.balance || 0);
     } catch (error) {
       console.error('Error loading data:', error);
+      setInvoices([]);
+      setBalance(0);
     }
+
   };
 
   return (
