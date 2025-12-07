@@ -37,7 +37,12 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
     {
-        var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>() ?? [];
+        // Tenta pegar da variável de ambiente (separada por vírgula)
+        var allowedOriginsEnv = builder.Configuration["ALLOWED_ORIGINS"];
+        var allowedOrigins = !string.IsNullOrEmpty(allowedOriginsEnv)
+            ? allowedOriginsEnv.Split(',', StringSplitOptions.RemoveEmptyEntries)
+            : builder.Configuration.GetSection("AllowedOrigins").Get<string[]>() ?? [];
+
         policy.WithOrigins(allowedOrigins)
               .AllowAnyHeader()
               .AllowAnyMethod();
