@@ -385,3 +385,7 @@ C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Api\ob
 C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Api\obj\Debug\net8.0\SolarCRM.0184BF17.Up2Date
 C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Api\obj\Debug\net8.0\SolarCRM.Api.genruntimeconfig.cache
 C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Api\obj\Debug\net8.0\ref\SolarCRM.Api.dll
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Api\obj\Debug\net8.0\SolarCRM.Api.sourcelink.json

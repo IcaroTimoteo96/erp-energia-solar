@@ -11,6 +11,10 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
     });
 
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddDbContext<SolarCRM.Infrastructure.Persistence.SolarDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -93,6 +97,9 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+app.UseSwagger();
+app.UseSwaggerUI();
+
 app.UseCors("AllowReactApp");
 app.UseHttpsRedirection();
 
@@ -162,6 +169,8 @@ var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
+
+app.MapGet("/", () => new { Message = "SolarCRM API is running", Environment = app.Environment.EnvironmentName, Timestamp = DateTime.UtcNow });
 
 app.MapGet("/weatherforecast", () =>
 {

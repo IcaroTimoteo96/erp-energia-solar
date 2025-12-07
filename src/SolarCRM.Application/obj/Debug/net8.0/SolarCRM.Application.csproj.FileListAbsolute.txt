@@ -43,3 +43,4 @@ C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Applic
 C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Application\obj\Debug\net8.0\refint\SolarCRM.Application.dll
 C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Application\obj\Debug\net8.0\SolarCRM.Application.pdb
 C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Application\obj\Debug\net8.0\ref\SolarCRM.Application.dll
+C:\Users\icaro\.gemini\antigravity\scratch\erp-energia-solar\src\SolarCRM.Application\obj\Debug\net8.0\SolarCRM.Application.sourcelink.json
