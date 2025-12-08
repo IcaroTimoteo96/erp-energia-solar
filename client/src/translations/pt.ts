@@ -110,5 +110,16 @@ export const pt = {
         project: 'Projeto',
         date: 'Data',
         value: 'Valor'
+    },
+    calculator: {
+        title: 'Calculadora Solar',
+        monthlyUsage: 'Consumo Mensal (kWh)',
+        peakSunHours: 'Horas de Sol Pleno',
+        panelWattage: 'Potência do Painel (W)',
+        energyRate: 'Tarifa de Energia (R$/kWh)',
+        calculate: 'Calcular Sistema',
+        systemSize: 'Tamanho do Sistema',
+        panelsNeeded: 'Painéis Necessários',
+        savings: 'Economia Est. Mensal'
     }
 };

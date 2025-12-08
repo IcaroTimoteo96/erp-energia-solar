@@ -110,5 +110,16 @@ export const en = {
         project: 'Project',
         date: 'Date',
         value: 'Value'
+    },
+    calculator: {
+        title: 'Solar Calculator',
+        monthlyUsage: 'Monthly Usage (kWh)',
+        peakSunHours: 'Peak Sun Hours',
+        panelWattage: 'Panel Wattage (W)',
+        energyRate: 'Energy Rate ($/kWh)',
+        calculate: 'Calculate System',
+        systemSize: 'System Size',
+        panelsNeeded: 'Panels Needed',
+        savings: 'Est. Savings/Mo'
     }
 };
