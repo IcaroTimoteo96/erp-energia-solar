@@ -27,8 +27,11 @@ const CreateProjectModal = ({ isOpen, onClose, onSuccess }: CreateProjectModalPr
 
   const loadQuotes = async () => {
     try {
+      console.log('Fetching quotes...');
       const response = await quoteService.getAll();
+      console.log('Quotes response:', response);
       if (Array.isArray(response.data)) {
+        console.log('Quotes data is array, setting state:', response.data);
         setQuotes(response.data);
       } else {
         console.error('Expected array of quotes but got:', response.data);
@@ -39,6 +42,9 @@ const CreateProjectModal = ({ isOpen, onClose, onSuccess }: CreateProjectModalPr
       setQuotes([]);
     }
   };
+
+  // Debug log render
+  console.log('Render CreateProjectModal, quotes:', quotes, 'isArray:', Array.isArray(quotes));
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -90,7 +96,7 @@ const CreateProjectModal = ({ isOpen, onClose, onSuccess }: CreateProjectModalPr
             onChange={(e) => setFormData({ ...formData, quoteId: e.target.value })}
           >
             <option value="">Selecione um orçamento...</option>
-            {quotes.map((quote) => (
+            {Array.isArray(quotes) && quotes.map((quote) => (
               <option key={quote.id} value={quote.id}>
                 {quote.lead?.name} - {quote.systemSizeKw}kWp (R$ {quote.totalPrice})
               </option>

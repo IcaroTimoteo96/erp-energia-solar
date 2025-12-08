@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Modal from '../Modal';
-import axios from 'axios';
+import { ticketService } from '../../services/api';
 
 interface CreateTicketModalProps {
   isOpen: boolean;
@@ -21,7 +21,7 @@ const CreateTicketModal = ({ isOpen, onClose, onSuccess }: CreateTicketModalProp
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('/api/tickets', formData);
+      await ticketService.create(formData);
       onSuccess();
       onClose();
       setFormData({

@@ -15,8 +15,11 @@ const Projects = () => {
 
   const loadProjects = async () => {
     try {
+      console.log('Fetching projects...');
       const response = await projectService.getAll();
+      console.log('Projects response:', response);
       if (Array.isArray(response.data)) {
+        console.log('Projects data is array, setting state:', response.data);
         setProjects(response.data);
       } else {
         console.error('Expected array of projects but got:', response.data);
@@ -27,6 +30,9 @@ const Projects = () => {
       setProjects([]);
     }
   };
+
+  // Debug log render
+  console.log('Render Projects page, projects:', projects, 'isArray:', Array.isArray(projects));
 
   return (
     <div className="space-y-6">
@@ -51,7 +57,7 @@ const Projects = () => {
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project) => (
+        {Array.isArray(projects) && projects.map((project) => (
           <div key={project.id} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col">
             <div className="p-6 flex-1">
               <div className="flex justify-between items-start mb-4">
@@ -82,7 +88,7 @@ const Projects = () => {
               <div className="mt-6">
                 <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">{t.projects.documents}</h4>
                 <div className="space-y-2">
-                  {project.documents?.map((doc: any, idx: number) => (
+                  {Array.isArray(project.documents) ? project.documents.map((doc: any, idx: number) => (
                     <div key={idx} className="flex items-center justify-between text-sm bg-gray-50 p-2 rounded-lg">
                       <div className="flex items-center gap-2">
                         <FileText size={16} className="text-gray-400" />
@@ -90,13 +96,15 @@ const Projects = () => {
                       </div>
                       <button className="text-blue-600 hover:text-blue-800 text-xs font-medium">{t.common.view}</button>
                     </div>
-                  ))}
-                  {(!project.documents || project.documents.length === 0) && (
-                    <p className="text-xs text-gray-400 italic">{t.projects.noDocuments}</p>
+                  )) : (
+                    (!project.documents || project.documents.length === 0) && (
+                      <p className="text-xs text-gray-400 italic">{t.projects.noDocuments}</p>
+                    )
                   )}
                 </div>
               </div>
             </div>
+
 
             <div className="bg-gray-50 px-6 py-4 border-t border-gray-100 flex justify-between items-center">
               <button className="text-sm text-gray-600 hover:text-gray-900 font-medium flex items-center gap-1">

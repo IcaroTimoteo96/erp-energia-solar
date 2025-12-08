@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Modal from '../Modal';
-import axios from 'axios';
+import { productService } from '../../services/api';
 
 interface CreateProductModalProps {
   isOpen: boolean;
@@ -24,7 +24,7 @@ const CreateProductModal = ({ isOpen, onClose, onSuccess }: CreateProductModalPr
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('/api/products', {
+      await productService.create({
         ...formData,
         price: parseFloat(formData.price),
         stockQuantity: parseInt(formData.stockQuantity)

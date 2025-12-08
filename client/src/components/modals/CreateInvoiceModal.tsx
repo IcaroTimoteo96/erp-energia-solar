@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Modal from '../Modal';
-import axios from 'axios';
+import { invoiceService, projectService } from '../../services/api';
 
 interface CreateInvoiceModalProps {
   isOpen: boolean;
@@ -29,10 +29,16 @@ const CreateInvoiceModal = ({ isOpen, onClose, onSuccess }: CreateInvoiceModalPr
 
   const loadProjects = async () => {
     try {
-      const response = await axios.get('/api/projects');
-      setProjects(response.data);
+      const response = await projectService.getAll();
+      if (Array.isArray(response.data)) {
+        setProjects(response.data);
+      } else {
+        console.error('Expected array of projects but got:', response.data);
+        setProjects([]);
+      }
     } catch (error) {
       console.error('Error loading projects:', error);
+      setProjects([]);
     }
   };
 
@@ -40,7 +46,7 @@ const CreateInvoiceModal = ({ isOpen, onClose, onSuccess }: CreateInvoiceModalPr
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('/api/invoices', {
+      await invoiceService.create({
         ...formData,
         totalAmount: parseFloat(formData.totalAmount),
         issueDate: new Date(formData.issueDate).toISOString(),

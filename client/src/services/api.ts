@@ -68,6 +68,7 @@ export const dashboardService = {
 
 export const invoiceService = {
   getAll: () => api.get('/invoices'),
+  create: (data: any) => api.post('/invoices', data),
 };
 
 export const transactionService = {

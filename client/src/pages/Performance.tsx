@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Activity, TrendingUp, Leaf } from 'lucide-react';
-import axios from 'axios';
+import { projectService } from '../services/api';
 
 const Performance = () => {
   const [projects, setProjects] = useState<any[]>([]);
@@ -12,11 +12,17 @@ const Performance = () => {
 
   const loadData = async () => {
     try {
-      const projectsRes = await axios.get('/api/projects');
-      setProjects(projectsRes.data);
+      const projectsRes = await projectService.getAll();
+      if (Array.isArray(projectsRes.data)) {
+        setProjects(projectsRes.data);
+      } else {
+        console.error('Expected array of projects but got:', projectsRes.data);
+        setProjects([]);
+      }
       setTotalCO2(12500); // Valor simulado
     } catch (error) {
       console.error('Error loading data:', error);
+      setProjects([]);
     }
   };
 

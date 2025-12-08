@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BarChart3, TrendingDown, TrendingUp } from 'lucide-react';
-import axios from 'axios';
+import { projectService } from '../services/api';
 
 const Analytics = () => {
   const [projects, setProjects] = useState<any[]>([]);
@@ -11,10 +11,16 @@ const Analytics = () => {
 
   const loadData = async () => {
     try {
-      const res = await axios.get('/api/projects');
-      setProjects(res.data);
+      const res = await projectService.getAll();
+      if (Array.isArray(res.data)) {
+        setProjects(res.data);
+      } else {
+        console.error('Expected array of projects but got:', res.data);
+        setProjects([]);
+      }
     } catch (error) {
       console.error('Error loading data:', error);
+      setProjects([]);
     }
   };
 
