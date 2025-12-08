@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Users, FileText, Briefcase, Wrench, Package, LifeBuoy, DollarSign, LogOut } from 'lucide-react';
+import { LayoutDashboard, Users, FileText, Briefcase, Wrench, Package, LifeBuoy, DollarSign, LogOut, Activity, TrendingUp } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -19,8 +19,10 @@ const Layout = () => {
     { path: '/projects', label: t.sidebar.projects, icon: <Briefcase size={20} /> },
     { path: '/service-orders', label: t.sidebar.serviceOrders, icon: <Wrench size={20} /> },
     { path: '/inventory', label: t.sidebar.inventory, icon: <Package size={20} /> },
-    { path: '/support', label: t.sidebar.support, icon: <LifeBuoy size={20} /> },
     { path: '/financial', label: t.sidebar.financial, icon: <DollarSign size={20} /> },
+    { path: '/performance', label: t.sidebar.performance, icon: <Activity size={20} /> },
+    { path: '/analytics', label: t.sidebar.analytics, icon: <TrendingUp size={20} /> },
+    { path: '/support', label: t.sidebar.support, icon: <LifeBuoy size={20} /> },
   ];
 
   return (
