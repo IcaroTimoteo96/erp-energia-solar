@@ -16,9 +16,15 @@ const Support = () => {
   const loadTickets = async () => {
     try {
       const response = await ticketService.getAll();
-      setTickets(response.data);
+      if (Array.isArray(response.data)) {
+        setTickets(response.data);
+      } else {
+        console.error('Expected array of tickets but got:', response.data);
+        setTickets([]);
+      }
     } catch (error) {
       console.error('Error loading tickets:', error);
+      setTickets([]);
     }
   };
 

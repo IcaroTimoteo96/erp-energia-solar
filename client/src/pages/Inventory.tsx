@@ -16,9 +16,15 @@ const Inventory = () => {
   const loadProducts = async () => {
     try {
       const response = await productService.getAll();
-      setProducts(response.data);
+      if (Array.isArray(response.data)) {
+        setProducts(response.data);
+      } else {
+        console.error('Expected array of products but got:', response.data);
+        setProducts([]);
+      }
     } catch (error) {
       console.error('Error loading products:', error);
+      setProducts([]);
     }
   };
 

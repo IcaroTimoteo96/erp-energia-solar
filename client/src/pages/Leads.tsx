@@ -25,9 +25,15 @@ const Leads = () => {
   const loadLeads = async () => {
     try {
       const response = await leadService.getAll();
-      setLeads(response.data);
+      if (Array.isArray(response.data)) {
+        setLeads(response.data);
+      } else {
+        console.error('Expected array of leads but got:', response.data);
+        setLeads([]);
+      }
     } catch (error) {
       console.error('Error loading leads:', error);
+      setLeads([]);
     } finally {
       setLoading(false);
     }

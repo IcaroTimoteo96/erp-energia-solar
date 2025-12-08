@@ -16,9 +16,15 @@ const Projects = () => {
   const loadProjects = async () => {
     try {
       const response = await projectService.getAll();
-      setProjects(response.data);
+      if (Array.isArray(response.data)) {
+        setProjects(response.data);
+      } else {
+        console.error('Expected array of projects but got:', response.data);
+        setProjects([]);
+      }
     } catch (error) {
       console.error('Error loading projects:', error);
+      setProjects([]);
     }
   };
 

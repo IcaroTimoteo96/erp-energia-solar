@@ -28,7 +28,17 @@ const Dashboard = () => {
   const loadDashboardData = async () => {
     try {
       const response = await dashboardService.getSummary();
-      setStats(response.data);
+      if (response.data && typeof response.data === 'object') {
+        // Ensure recentActivity is an array to prevent crash
+        const data = response.data;
+        if (!Array.isArray(data.recentActivity)) {
+          console.warn('Dashboard recentActivity is not an array, defaulting to empty');
+          data.recentActivity = [];
+        }
+        setStats(data);
+      } else {
+        console.error('Expected dashboard stats object but got:', response.data);
+      }
     } catch (error) {
       console.error('Error loading dashboard data:', error);
     }

@@ -17,9 +17,15 @@ const Quotes = () => {
   const loadQuotes = async () => {
     try {
       const response = await quoteService.getAll();
-      setQuotes(response.data);
+      if (Array.isArray(response.data)) {
+        setQuotes(response.data);
+      } else {
+        console.error('Expected array of quotes but got:', response.data);
+        setQuotes([]);
+      }
     } catch (error) {
       console.error('Error loading quotes:', error);
+      setQuotes([]);
     }
   };
 

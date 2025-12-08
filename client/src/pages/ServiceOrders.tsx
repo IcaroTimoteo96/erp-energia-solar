@@ -16,9 +16,15 @@ const ServiceOrders = () => {
   const loadOrders = async () => {
     try {
       const response = await serviceOrderService.getAll();
-      setOrders(response.data);
+      if (Array.isArray(response.data)) {
+        setOrders(response.data);
+      } else {
+        console.error('Expected array of service orders but got:', response.data);
+        setOrders([]);
+      }
     } catch (error) {
       console.error('Error loading service orders:', error);
+      setOrders([]);
     }
   };
 

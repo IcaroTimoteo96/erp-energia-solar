@@ -20,8 +20,20 @@ const Financial = () => {
         invoiceService.getAll(),
         transactionService.getBalance()
       ]);
-      setInvoices(invoicesRes.data || []);
-      setBalance(balanceRes.data?.balance || 0);
+
+      if (Array.isArray(invoicesRes.data)) {
+        setInvoices(invoicesRes.data);
+      } else {
+        console.error('Expected array of invoices but got:', invoicesRes.data);
+        setInvoices([]);
+      }
+
+      if (balanceRes.data && typeof balanceRes.data.balance === 'number') {
+        setBalance(balanceRes.data.balance);
+      } else {
+        console.error('Expected balance object but got:', balanceRes.data);
+        setBalance(0);
+      }
     } catch (error) {
       console.error('Error loading data:', error);
       setInvoices([]);

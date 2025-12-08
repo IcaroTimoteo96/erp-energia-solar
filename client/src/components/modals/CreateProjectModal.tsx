@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Modal from '../Modal';
-import axios from 'axios';
+import { quoteService, projectService } from '../../services/api';
 
 interface CreateProjectModalProps {
   isOpen: boolean;
@@ -27,10 +27,16 @@ const CreateProjectModal = ({ isOpen, onClose, onSuccess }: CreateProjectModalPr
 
   const loadQuotes = async () => {
     try {
-      const response = await axios.get('/api/quotes');
-      setQuotes(response.data);
+      const response = await quoteService.getAll();
+      if (Array.isArray(response.data)) {
+        setQuotes(response.data);
+      } else {
+        console.error('Expected array of quotes but got:', response.data);
+        setQuotes([]);
+      }
     } catch (error) {
       console.error('Error loading quotes:', error);
+      setQuotes([]);
     }
   };
 
@@ -38,7 +44,7 @@ const CreateProjectModal = ({ isOpen, onClose, onSuccess }: CreateProjectModalPr
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('/api/projects', {
+      await projectService.create({
         ...formData,
         startDate: new Date(formData.startDate).toISOString(),
         endDate: formData.endDate ? new Date(formData.endDate).toISOString() : null
