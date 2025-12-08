@@ -74,7 +74,7 @@ const CreateQuoteModal = ({ isOpen, onClose, onSuccess }: CreateQuoteModalProps)
             onChange={(e) => setFormData({ ...formData, leadId: e.target.value })}
           >
             <option value="">Selecione um lead...</option>
-            {leads.map((lead) => (
+            {Array.isArray(leads) && leads.map((lead) => (
               <option key={lead.id} value={lead.id}>
                 {lead.name} ({lead.email})
               </option>

@@ -32,7 +32,8 @@ const CreateProjectModal = ({ isOpen, onClose, onSuccess }: CreateProjectModalPr
       console.log('Quotes response:', response);
       if (Array.isArray(response.data)) {
         console.log('Quotes data is array, setting state:', response.data);
-        setQuotes(response.data);
+        // Force new array allocation to ensure we have a real array
+        setQuotes([...response.data]);
       } else {
         console.error('Expected array of quotes but got:', response.data);
         setQuotes([]);
@@ -96,11 +97,16 @@ const CreateProjectModal = ({ isOpen, onClose, onSuccess }: CreateProjectModalPr
             onChange={(e) => setFormData({ ...formData, quoteId: e.target.value })}
           >
             <option value="">Selecione um orçamento...</option>
-            {Array.isArray(quotes) && quotes.map((quote) => (
-              <option key={quote.id} value={quote.id}>
-                {quote.lead?.name} - {quote.systemSizeKw}kWp (R$ {quote.totalPrice})
-              </option>
-            ))}
+            {/* Paranoid check: ensure quotes is array AND has map function */}
+            {quotes && Array.isArray(quotes) && typeof quotes.map === 'function' ? (
+              quotes.map((quote) => (
+                <option key={quote.id} value={quote.id}>
+                  {quote.lead?.name || 'Lead'} - {quote.systemSizeKw || 0}kWp (R$ {quote.totalPrice || 0})
+                </option>
+              ))
+            ) : (
+              <option disabled>Carregando orçamentos...</option>
+            )}
           </select>
         </div>
 
