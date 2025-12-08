@@ -41,11 +41,29 @@ builder.Services.AddCors(options =>
         var allowedOriginsEnv = builder.Configuration["ALLOWED_ORIGINS"];
         var allowedOrigins = !string.IsNullOrEmpty(allowedOriginsEnv)
             ? allowedOriginsEnv.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                               .Select(o => o.Trim().TrimEnd('/')) // Remove espaços e barra final
+                               .ToArray()
             : builder.Configuration.GetSection("AllowedOrigins").Get<string[]>() ?? [];
 
-        policy.WithOrigins(allowedOrigins)
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        Console.WriteLine($"[CORS Config] Raw Env: '{allowedOriginsEnv}'");
+        Console.WriteLine($"[CORS Config] Allowed Origins: {string.Join(", ", allowedOrigins)}");
+
+        // Configuração Flexível de CORS
+        policy.SetIsOriginAllowed(origin =>
+        {
+            // 1. Permitir Localhost (Desenvolvimento)
+            if (origin.StartsWith("http://localhost")) return true;
+
+            // 2. Permitir qualquer deploy da Vercel (*.vercel.app)
+            if (origin.EndsWith(".vercel.app")) return true;
+
+            // 3. Permitir origens explicitamente configuradas
+            if (allowedOrigins.Contains(origin)) return true;
+
+            return false;
+        })
+        .AllowAnyHeader()
+        .AllowAnyMethod();
     });
 });
 
