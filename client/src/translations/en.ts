@@ -32,7 +32,9 @@ export const en = {
         serviceOrders: 'Service Orders',
         inventory: 'Inventory',
         support: 'Support',
-        financial: 'Financial'
+        financial: 'Financial',
+        performance: 'Performance',
+        analytics: 'Analytics'
     },
     quotes: {
         title: 'Quotes & Proposals',

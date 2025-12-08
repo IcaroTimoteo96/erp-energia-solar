@@ -32,7 +32,9 @@ export const pt = {
         serviceOrders: 'Ordens de Serviço',
         inventory: 'Estoque',
         support: 'Suporte',
-        financial: 'Financeiro'
+        financial: 'Financeiro',
+        performance: 'Desempenho',
+        analytics: 'Análise'
     },
     quotes: {
         title: 'Orçamentos & Propostas',
