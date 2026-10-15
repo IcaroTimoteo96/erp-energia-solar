@@ -4,7 +4,7 @@ Um sistema CRM completo feito com .NET 8 e React para empresas de energia solar.
 
 A comprehensive CRM system for solar energy companies built with .NET 8 and React.
 
-Acesse a aplicação: [CRM Solar](https://erpenergiasolarv1-6avkeko6p-timoteos-projects-e1753441.vercel.app/login)
+Acesse a aplicação: [CRM Solar](https://erpenergiasolarv1.vercel.app/login)
 
 **Credenciais para usuário admin: 
 Email: admin@solarcrm.com
